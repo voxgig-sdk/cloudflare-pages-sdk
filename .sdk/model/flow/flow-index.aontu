@@ -1,0 +1,8 @@
+# Flows
+
+@"./BasicPagesDeploymentFlow.aontu"
+@"./BasicPagesDomainFlow.aontu"
+@"./BasicPagesPagesAssetsCheckMissingFlow.aontu"
+@"./BasicPagesProjectFlow.aontu"
+@"./BasicUploadFlow.aontu"
+@"./BasicUpsertHashFlow.aontu"

@@ -1,0 +1,28 @@
+{
+  "files": [
+    "SUMMARY.md",
+    "docs/api/index.html",
+    "docs/api/pages_deployment.html",
+    "docs/api/pages_domain.html",
+    "docs/api/pages_pages_assets_check_missing.html",
+    "docs/api/pages_project.html",
+    "docs/api/upload.html",
+    "docs/api/upsert_hash.html",
+    "docs/features/test.html",
+    "docs/guides/authentication.html",
+    "docs/guides/concepts.html",
+    "docs/guides/errors.html",
+    "docs/guides/first-call.html",
+    "docs/index.html",
+    "docs/sdks/go.html",
+    "docs/sdks/lua.html",
+    "docs/sdks/php.html",
+    "docs/sdks/py.html",
+    "docs/sdks/rb.html",
+    "docs/sdks/ts.html",
+    "docs/tools/go-cli.html",
+    "docs/tools/go-mcp.html"
+  ],
+  "config": ".sdk/doc/qa/vale.ini",
+  "routes": {}
+}

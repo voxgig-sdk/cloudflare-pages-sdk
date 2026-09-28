@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>PagesDeployment | Cloudflare Pages</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Cloudflare Pages<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/cloudflare-pages-sdk">voxgig-sdk/cloudflare-pages-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Cloudflare Pages</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a aria-current="page" href="../api/pages_deployment.html">PagesDeployment</a><div class="nav-sections"><a class="nav-section" href="#post-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idretry">POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry</a>
+<a class="nav-section" href="#post-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idrollback">POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback</a>
+<a class="nav-section" href="#post-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idtails">POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails</a>
+<a class="nav-section" href="#post-accountsaccount_idpagesprojectsproject_namedeployments">POST /accounts/{account_id}/pages/projects/{project_name}/deployments</a>
+<a class="nav-section" href="#get-accountsaccount_idpagesprojectsproject_namedeployments">GET /accounts/{account_id}/pages/projects/{project_name}/deployments</a>
+<a class="nav-section" href="#get-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idhistorylogs">GET /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs</a>
+<a class="nav-section" href="#get-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_id">GET /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}</a>
+<a class="nav-section" href="#delete-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idtailstail_id">DELETE /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails/{tail_id}</a>
+<a class="nav-section" href="#delete-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_id">DELETE /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}</a></div>
+<a href="../api/pages_domain.html">PagesDomain</a>
+<a href="../api/pages_pages_assets_check_missing.html">PagesPagesAssetsCheckMissing</a>
+<a href="../api/pages_project.html">PagesProject</a>
+<a href="../api/upload.html">Upload</a>
+<a href="../api/upsert_hash.html">UpsertHash</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/rb.html">Ruby</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/test.html">Test transport</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="pagesdeployment">PagesDeployment</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idretry"><code>/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry</code></a></td>
+<td><code>create</code></td>
+<td>Retry deployment response</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idrollback"><code>/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback</code></a></td>
+<td><code>create</code></td>
+<td>Rollback deployment response</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idtails"><code>/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails</code></a></td>
+<td><code>create</code></td>
+<td>Create deployment tail response</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-accountsaccount_idpagesprojectsproject_namedeployments"><code>/accounts/{account_id}/pages/projects/{project_name}/deployments</code></a></td>
+<td><code>create</code></td>
+<td>Create deployment response</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-accountsaccount_idpagesprojectsproject_namedeployments"><code>/accounts/{account_id}/pages/projects/{project_name}/deployments</code></a></td>
+<td><code>list</code></td>
+<td>Get deployments response</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idhistorylogs"><code>/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs</code></a></td>
+<td><code>list</code></td>
+<td>Get deployment logs response</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_id"><code>/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}</code></a></td>
+<td><code>load</code></td>
+<td>Get deployment info response</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idtailstail_id"><code>/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails/{tail_id}</code></a></td>
+<td><code>remove</code></td>
+<td>Delete deployment tail response</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_id"><code>/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}</code></a></td>
+<td><code>remove</code></td>
+<td>Delete deployment response</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">pages_deployments, err := client.PagesDeployment(nil).List(map[string]any{&quot;account_id&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(pages_deployments)
+pages_deployment, err := client.PagesDeployment(nil).Load(map[string]any{&quot;account_id&quot;: &quot;example&quot;, &quot;id&quot;: &quot;example_id&quot;, &quot;project_id&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(pages_deployment)
+created, err := client.PagesDeployment(nil).Create(map[string]any{&quot;account_id&quot;: &quot;example&quot;, &quot;errors&quot;: []any{}, &quot;messages&quot;: []any{}, &quot;result&quot;: map[string]any{}, &quot;success&quot;: true}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+removed, err := client.PagesDeployment(nil).Remove(map[string]any{&quot;account_id&quot;: &quot;example&quot;, &quot;project_id&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local pages_deployments, err = client:PagesDeployment():list({ account_id = &quot;example&quot; })
+local pages_deployment, err = client:PagesDeployment():load({ account_id = &quot;example&quot;, id = &quot;example_id&quot;, project_id = &quot;example&quot; })
+local created, err = client:PagesDeployment():create({ account_id = &quot;example&quot;, errors = {}, messages = {}, result = {}, success = true })
+local removed, err = client:PagesDeployment():remove({ account_id = &quot;example&quot;, project_id = &quot;example&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$pages_deployments = $client-&gt;PagesDeployment()-&gt;list([&quot;account_id&quot; =&gt; &quot;example&quot;]);
+$pages_deployment = $client-&gt;PagesDeployment()-&gt;load([&quot;account_id&quot; =&gt; &quot;example&quot;, &quot;id&quot; =&gt; &quot;example_id&quot;, &quot;project_id&quot; =&gt; &quot;example&quot;]);
+$created = $client-&gt;PagesDeployment()-&gt;create([&quot;account_id&quot; =&gt; &quot;example&quot;, &quot;errors&quot; =&gt; [], &quot;messages&quot; =&gt; [], &quot;result&quot; =&gt; [], &quot;success&quot; =&gt; true]);
+$client-&gt;PagesDeployment()-&gt;remove([&quot;account_id&quot; =&gt; &quot;example&quot;, &quot;project_id&quot; =&gt; &quot;example&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">pages_deployments = client.PagesDeployment().list({&quot;account_id&quot;: &quot;example&quot;})
+pages_deployment = client.PagesDeployment().load({&quot;account_id&quot;: &quot;example&quot;, &quot;id&quot;: &quot;example_id&quot;, &quot;project_id&quot;: &quot;example&quot;})
+created = client.PagesDeployment().create({ &quot;account_id&quot;: &quot;example&quot;, &quot;errors&quot;: [], &quot;messages&quot;: [], &quot;result&quot;: {}, &quot;success&quot;: True })
+client.PagesDeployment().remove({&quot;account_id&quot;: &quot;example&quot;, &quot;project_id&quot;: &quot;example&quot;})
+</code></pre>
+<h3 id="ruby">Ruby</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/rb.html#set-up-the-client">Ruby setup</a>, then call the operations:</p>
+<pre><code class="language-rb">pages_deployments = client.PagesDeployment.list({ &quot;account_id&quot; =&gt; &quot;example&quot; })
+pages_deployment = client.PagesDeployment.load({ &quot;account_id&quot; =&gt; &quot;example&quot;, &quot;id&quot; =&gt; &quot;example_id&quot;, &quot;project_id&quot; =&gt; &quot;example&quot; })
+created = client.PagesDeployment.create({ &quot;account_id&quot; =&gt; &quot;example&quot;, &quot;errors&quot; =&gt; [], &quot;messages&quot; =&gt; [], &quot;result&quot; =&gt; {}, &quot;success&quot; =&gt; true })
+client.PagesDeployment.remove({ &quot;account_id&quot; =&gt; &quot;example&quot;, &quot;project_id&quot; =&gt; &quot;example&quot; })
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const pages_deployments = await client.PagesDeployment().list({ account_id: &quot;example&quot; })
+const pages_deployment = await client.PagesDeployment().load({ account_id: &quot;example&quot;, id: &quot;example_id&quot;, project_id: &quot;example&quot; })
+const created = await client.PagesDeployment().create({ account_id: &quot;example&quot;, errors: [], messages: [], result: {}, success: true })
+await client.PagesDeployment().remove({ account_id: &quot;example&quot;, project_id: &quot;example&quot; })
+</code></pre>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Errors</td>
+</tr>
+<tr>
+<td><code>filters</code></td>
+<td><code>array</code></td>
+<td>No</td>
+<td>Filters to apply to the tail session.</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Id</td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Messages</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Result</td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idretry" class="operation" data-method="post"><code>POST</code> /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry</h3>
+<p>Operation ID: <code>pages-deployment-retry-deployment</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>deployment_id</code> | <code>path</code> | <code>string (uuid)</code> | Yes |  |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-retry-deployment-response" class="status" data-status="2xx">200: Retry deployment response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-retry-deployment-response-failure">4XX: Retry deployment response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idrollback" class="operation" data-method="post"><code>POST</code> /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback</h3>
+<p>Operation ID: <code>pages-deployment-rollback-deployment</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>deployment_id</code> | <code>path</code> | <code>string (uuid)</code> | Yes |  |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-rollback-deployment-response" class="status" data-status="2xx">200: Rollback deployment response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-rollback-deployment-response-failure">4XX: Rollback deployment response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idtails" class="operation" data-method="post"><code>POST</code> /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails</h3>
+<p>Operation ID: <code>pages-deployment-create-tail</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>deployment_id</code> | <code>path</code> | <code>string (uuid)</code> | Yes |  |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>filters</code></td>
+<td><code>array of object</code></td>
+<td>No</td>
+<td>Filters to apply to the tail session.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-create-deployment-tail-response" class="status" data-status="2xx">200: Create deployment tail response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-create-deployment-tail-response-failure">4XX: Create deployment tail response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-accountsaccount_idpagesprojectsproject_namedeployments" class="operation" data-method="post"><code>POST</code> /accounts/{account_id}/pages/projects/{project_name}/deployments</h3>
+<p>Operation ID: <code>pages-deployment-create-deployment</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>multipart/form-data</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_headers</code></td>
+<td><code>string (binary)</code></td>
+<td>No</td>
+<td>Headers configuration file for the deployment.</td>
+</tr>
+<tr>
+<td><code>_redirects</code></td>
+<td><code>string (binary)</code></td>
+<td>No</td>
+<td>Redirects configuration file for the deployment.</td>
+</tr>
+<tr>
+<td><code>_routes.json</code></td>
+<td><code>string (binary)</code></td>
+<td>No</td>
+<td>Routes configuration file defining routing rules.</td>
+</tr>
+<tr>
+<td><code>_worker.bundle</code></td>
+<td><code>string (binary)</code></td>
+<td>No</td>
+<td>Worker bundle file in multipart/form-data format. Mutually exclusive with <code>_worker.js</code>. Cannot specify both <code>_worker.js</code> and <code>_worker.bundle</code> in the same request. Maximum size: 25 MiB.</td>
+</tr>
+<tr>
+<td><code>_worker.js</code></td>
+<td><code>string (binary)</code></td>
+<td>No</td>
+<td>Worker JavaScript file. Mutually exclusive with <code>_worker.bundle</code>. Cannot specify both <code>_worker.js</code> and <code>_worker.bundle</code> in the same request.</td>
+</tr>
+<tr>
+<td><code>branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Git branch to deploy. Uses the branch's <code>HEAD</code>; defaults to the project's production branch.</td>
+</tr>
+<tr>
+<td><code>commit_dirty</code></td>
+<td><code>enum: true, false</code></td>
+<td>No</td>
+<td>Whether the associated Git working tree has uncommitted changes. Provide <code>true</code> or <code>false</code>.</td>
+</tr>
+<tr>
+<td><code>commit_hash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Git commit SHA associated with the deployment.</td>
+</tr>
+<tr>
+<td><code>commit_message</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Git commit message associated with the deployment.</td>
+</tr>
+<tr>
+<td><code>functions-filepath-routing-config.json</code></td>
+<td><code>string (binary)</code></td>
+<td>No</td>
+<td>Functions routing configuration file.</td>
+</tr>
+<tr>
+<td><code>manifest</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>JSON-encoded object mapping deployment file paths to their uploaded content hashes. Required for Direct Upload deployments. Maximum 20,000 entries.</td>
+</tr>
+<tr>
+<td><code>pages_build_output_dir</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The build output directory path.</td>
+</tr>
+<tr>
+<td><code>wrangler_config_hash</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Hash of the Wrangler configuration file used for this deployment.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-create-deployment-response" class="status" data-status="2xx">200: Create deployment response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-create-deployment-response-failure">4XX: Create deployment response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-accountsaccount_idpagesprojectsproject_namedeployments" class="operation" data-method="get"><code>GET</code> /accounts/{account_id}/pages/projects/{project_name}/deployments</h3>
+<p>Operation ID: <code>pages-deployment-get-deployments</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>env</code> | <code>query</code> | <code>enum: production, preview</code> | No |  |
+| <code>page</code> | <code>query</code> | <code>integer</code> | No |  |
+| <code>per_page</code> | <code>query</code> | <code>integer</code> | No |  |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-get-deployments-response" class="status" data-status="2xx">200: Get deployments response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object and object</code>.</p>
+<h5 id="4xx-get-deployments-response-failure">4XX: Get deployments response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idhistorylogs" class="operation" data-method="get"><code>GET</code> /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs</h3>
+<p>Operation ID: <code>pages-deployment-get-deployment-logs</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>deployment_id</code> | <code>path</code> | <code>string (uuid)</code> | Yes |  |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-get-deployment-logs-response" class="status" data-status="2xx">200: Get deployment logs response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-get-deployment-logs-response-failure">4XX: Get deployment logs response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_id" class="operation" data-method="get"><code>GET</code> /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}</h3>
+<p>Operation ID: <code>pages-deployment-get-deployment-info</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>deployment_id</code> | <code>path</code> | <code>string (uuid)</code> | Yes |  |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-get-deployment-info-response" class="status" data-status="2xx">200: Get deployment info response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-get-deployment-info-response-failure">4XX: Get deployment info response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remove">remove</h2>
+<h3 id="delete-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_idtailstail_id" class="operation" data-method="delete"><code>DELETE</code> /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails/{tail_id}</h3>
+<p>Operation ID: <code>pages-deployment-delete-tail</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>tail_id</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>deployment_id</code> | <code>path</code> | <code>string (uuid)</code> | Yes |  |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-delete-deployment-tail-response" class="status" data-status="2xx">200: Delete deployment tail response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-delete-deployment-tail-response-failure">4XX: Delete deployment tail response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="delete-accountsaccount_idpagesprojectsproject_namedeploymentsdeployment_id" class="operation" data-method="delete"><code>DELETE</code> /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}</h3>
+<p>Operation ID: <code>pages-deployment-delete-deployment</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>deployment_id</code> | <code>path</code> | <code>string (uuid)</code> | Yes |  |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>force</code> | <code>query</code> | <code>boolean</code> | No |  |</p>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-delete-deployment-response" class="status" data-status="2xx">200: Delete deployment response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-delete-deployment-response-failure">4XX: Delete deployment response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

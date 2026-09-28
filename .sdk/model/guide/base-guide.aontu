@@ -1,0 +1,103 @@
+# Generated from the API definition and overwritten on every build: do not
+# edit this file. Put customizations in the guide entry file, which includes
+# this one and overrides its defaults:
+#   guide.aontu
+
+guide: {
+  metrics: count: entity: 6
+  metrics: count: path: 17
+  metrics: count: method: 26
+
+  entity: pages_deployment: {
+    path: "/accounts/{account_id}/pages/projects/{project_name}/deployments": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}": {
+      rename: param: "deployment_id": *"id"
+      rename: param: "project_name": *"project_id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs": {
+      rename: param: "project_name": *"project_id"
+      op: list: method: *GET
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry": {
+      action: "retry": {}
+      rename: param: "project_name": *"project_id"
+      op: create: method: *POST
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback": {
+      action: "rollback": {}
+      rename: param: "project_name": *"project_id"
+      op: create: method: *POST
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails": {
+      rename: param: "project_name": *"project_id"
+      op: create: method: *POST
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails/{tail_id}": {
+      rename: param: "project_name": *"project_id"
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: pages_domain: {
+    path: "/accounts/{account_id}/pages/projects/{project_name}/domains": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}": {
+      rename: param: "domain_name": *"id"
+      rename: param: "project_name": *"project_id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: pages_pages_assets_check_missing: {
+    path: "/pages/assets/check-missing": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: pages_project: {
+    path: "/accounts/{account_id}/pages/projects": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}": {
+      rename: param: "project_name": *"id"
+      op: load: method: *GET
+      op: patch: method: *PATCH
+      op: remove: method: *DELETE
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}/purge_build_cache": {
+      action: "purge_build_cache": {}
+      op: create: method: *POST
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}/source": {
+      action: "source": {}
+      op: create: method: *POST
+      op: remove: method: *DELETE
+    }
+    path: "/accounts/{account_id}/pages/projects/{project_name}/upload-token": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: upload: {
+    path: "/pages/assets/upload": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: upsert_hash: {
+    path: "/pages/assets/upsert-hashes": {
+      op: create: method: *POST
+    }
+  }
+
+}

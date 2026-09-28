@@ -1,0 +1,71 @@
+# Entity: upsert_hash
+
+main: kit: entity: upsert_hash: {
+
+  alias: field: {}
+
+  fields: {
+    errors: {
+      h: "Errors"
+      n: "errors"
+      r: true
+      t: "`$ARRAY`"
+    }
+    hashes: {
+      h: "Hashes"
+      n: "hashes"
+      r: true
+      sh: "List of file content hashes to register in the asset store."
+      t: "`$ARRAY`"
+    }
+    messages: {
+      h: "Messages"
+      n: "messages"
+      r: true
+      t: "`$ARRAY`"
+    }
+    success: {
+      h: "Success"
+      n: "success"
+      r: true
+      sh: "Whether the API call was successful."
+      t: "`$BOOLEAN`"
+    }
+  }
+
+  name: "upsert_hash"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /pages/assets/upsert-hashes"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/pages/assets/upsert-hashes"
+          s: [
+            {
+              lit: "pages"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "upsert-hashes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

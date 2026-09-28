@@ -1,0 +1,18 @@
+# BasicPagesPagesAssetsCheckMissingFlow
+
+main: kit: flow: BasicPagesPagesAssetsCheckMissingFlow:
+{
+  entity: "pages_pages_assets_check_missing",
+  kind: "basic",
+  name: "BasicPagesPagesAssetsCheckMissingFlow",
+  step: [
+    {
+      i: {
+        ref: "pages_pages_assets_check_missing_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicPagesPagesAssetsCheckMissingFlow"
+}

@@ -1,0 +1,40 @@
+{
+  "existing": {
+    "upload": {
+      "UPLOAD00": {
+        "errors": [],
+        "messages": [],
+        "success": true,
+        "id": "UPLOAD00"
+      },
+      "UPLOAD01": {
+        "errors": [],
+        "messages": [],
+        "success": true,
+        "id": "UPLOAD01"
+      },
+      "UPLOAD02": {
+        "errors": [],
+        "messages": [],
+        "success": true,
+        "id": "UPLOAD02"
+      }
+    }
+  },
+  "new": {
+    "upload": {
+      "upload_ref01": {
+        "errors": [],
+        "messages": [],
+        "success": true
+      }
+    }
+  },
+  "requests": {
+    "POST /pages/assets/upload": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

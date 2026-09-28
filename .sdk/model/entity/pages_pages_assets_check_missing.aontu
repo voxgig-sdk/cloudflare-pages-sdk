@@ -1,0 +1,52 @@
+# Entity: pages_pages_assets_check_missing
+
+main: kit: entity: pages_pages_assets_check_missing: {
+
+  alias: field: {}
+
+  fields: {
+    hashes: {
+      h: "Hashes"
+      n: "hashes"
+      r: true
+      sh: "List of file content hashes to check for existence in the asset store."
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "pages_pages_assets_check_missing"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /pages/assets/check-missing"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/pages/assets/check-missing"
+          s: [
+            {
+              lit: "pages"
+            }
+            {
+              lit: "assets"
+            }
+            {
+              lit: "check-missing"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,110 @@
+{
+  "existing": {
+    "pages_project": {
+      "PAGES_PROJECT00": {
+        "build_config": {},
+        "deployment_configs": {},
+        "errors": [],
+        "id": "PAGES_PROJECT00",
+        "messages": [],
+        "name": "s69",
+        "production_branch": "s6a",
+        "result": {},
+        "source": {},
+        "success": false,
+        "account_id": "ACCOUNT01",
+        "project_name": "PROJECT_NAME01"
+      },
+      "PAGES_PROJECT01": {
+        "build_config": {},
+        "deployment_configs": {},
+        "errors": [],
+        "id": "PAGES_PROJECT01",
+        "messages": [],
+        "name": "scd",
+        "production_branch": "sce",
+        "result": {},
+        "source": {},
+        "success": false,
+        "account_id": "ACCOUNT01",
+        "project_name": "PROJECT_NAME01"
+      },
+      "PAGES_PROJECT02": {
+        "build_config": {},
+        "deployment_configs": {},
+        "errors": [],
+        "id": "PAGES_PROJECT02",
+        "messages": [],
+        "name": "s131",
+        "production_branch": "s132",
+        "result": {},
+        "source": {},
+        "success": false,
+        "account_id": "ACCOUNT01",
+        "project_name": "PROJECT_NAME01"
+      }
+    }
+  },
+  "new": {
+    "pages_project": {
+      "pages_project_ref01": {
+        "build_config": {},
+        "deployment_configs": {},
+        "errors": [],
+        "messages": [],
+        "name": "s195",
+        "production_branch": "s196",
+        "result": {},
+        "source": {},
+        "success": false
+      }
+    }
+  },
+  "requests": {
+    "POST /accounts/{account_id}/pages/projects/{project_name}/purge_build_cache": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /accounts/{account_id}/pages/projects/{project_name}/source": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /accounts/{account_id}/pages/projects": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /accounts/{account_id}/pages/projects": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /accounts/{account_id}/pages/projects/{project_name}/upload-token": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /accounts/{account_id}/pages/projects/{project_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /accounts/{account_id}/pages/projects/{project_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /accounts/{account_id}/pages/projects/{project_name}/source": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /accounts/{account_id}/pages/projects/{project_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

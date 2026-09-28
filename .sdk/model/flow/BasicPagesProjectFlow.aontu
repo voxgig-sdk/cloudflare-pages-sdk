@@ -1,0 +1,121 @@
+# BasicPagesProjectFlow
+
+main: kit: flow: BasicPagesProjectFlow:
+{
+  entity: "pages_project",
+  kind: "basic",
+  name: "BasicPagesProjectFlow",
+  step: [
+    {
+      i: {
+        ref: "pages_project_ref01"
+      }
+
+      m: {
+        account_id: "account01",
+        project_name: "project_name01"
+      }
+
+      o: "create"
+    }
+
+    {
+      m: {
+        account_id: "account01",
+        project_name: "project_name01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "pages_project_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      d: {
+        account_id: "account01"
+      }
+
+      i: {
+        ref: "pages_project_ref01",
+        srcdatavar: "pages_project_ref01_data",
+        suffix: "_up0",
+        textfield: "name"
+      }
+
+      o: "update",
+      s: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-pages_project_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "pages_project_ref01",
+        srcdatavar: "pages_project_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        account_id: "account01",
+        id: "pages_project01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-pages_project_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "pages_project_ref01",
+        suffix: "_rm0"
+      }
+
+      m: {
+        account_id: "account01",
+        id: "pages_project01"
+      }
+
+      o: "remove"
+    }
+
+    {
+      i: {
+        suffix: "_rt0"
+      }
+
+      m: {
+        account_id: "account01",
+        project_name: "project_name01"
+      }
+
+      o: "list",
+      v: [
+        {
+          apply: "ItemNotExists",
+          def: {
+            ref: "pages_project_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPagesProjectFlow"
+}

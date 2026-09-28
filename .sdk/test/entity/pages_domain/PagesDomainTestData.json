@@ -1,0 +1,77 @@
+{
+  "existing": {
+    "pages_domain": {
+      "PAGES_DOMAIN00": {
+        "errors": [],
+        "id": "PAGES_DOMAIN00",
+        "messages": [],
+        "name": "s3f",
+        "result": {},
+        "success": false,
+        "account_id": "ACCOUNT01",
+        "project_name": "PROJECT_NAME01",
+        "project_id": "PROJECT01"
+      },
+      "PAGES_DOMAIN01": {
+        "errors": [],
+        "id": "PAGES_DOMAIN01",
+        "messages": [],
+        "name": "s7b",
+        "result": {},
+        "success": false,
+        "account_id": "ACCOUNT01",
+        "project_name": "PROJECT_NAME01",
+        "project_id": "PROJECT01"
+      },
+      "PAGES_DOMAIN02": {
+        "errors": [],
+        "id": "PAGES_DOMAIN02",
+        "messages": [],
+        "name": "sb7",
+        "result": {},
+        "success": false,
+        "account_id": "ACCOUNT01",
+        "project_name": "PROJECT_NAME01",
+        "project_id": "PROJECT01"
+      }
+    }
+  },
+  "new": {
+    "pages_domain": {
+      "pages_domain_ref01": {
+        "errors": [],
+        "messages": [],
+        "name": "sf3",
+        "result": {},
+        "success": false
+      }
+    }
+  },
+  "requests": {
+    "POST /accounts/{account_id}/pages/projects/{project_name}/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /accounts/{account_id}/pages/projects/{project_name}/domains": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "PATCH /accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

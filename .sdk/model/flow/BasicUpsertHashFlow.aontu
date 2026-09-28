@@ -1,0 +1,18 @@
+# BasicUpsertHashFlow
+
+main: kit: flow: BasicUpsertHashFlow:
+{
+  entity: "upsert_hash",
+  kind: "basic",
+  name: "BasicUpsertHashFlow",
+  step: [
+    {
+      i: {
+        ref: "upsert_hash_ref01"
+      }
+
+      o: "create"
+    }
+  ],
+  "key$": "BasicUpsertHashFlow"
+}

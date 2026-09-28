@@ -1,0 +1,32 @@
+{
+  "existing": {
+    "pages_pages_assets_check_missing": {
+      "PAGES_PAGES_ASSETS_CHECK_MISSING00": {
+        "hashes": [],
+        "id": "PAGES_PAGES_ASSETS_CHECK_MISSING00"
+      },
+      "PAGES_PAGES_ASSETS_CHECK_MISSING01": {
+        "hashes": [],
+        "id": "PAGES_PAGES_ASSETS_CHECK_MISSING01"
+      },
+      "PAGES_PAGES_ASSETS_CHECK_MISSING02": {
+        "hashes": [],
+        "id": "PAGES_PAGES_ASSETS_CHECK_MISSING02"
+      }
+    }
+  },
+  "new": {
+    "pages_pages_assets_check_missing": {
+      "pages_pages_assets_check_missing_ref01": {
+        "hashes": []
+      }
+    }
+  },
+  "requests": {
+    "POST /pages/assets/check-missing": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

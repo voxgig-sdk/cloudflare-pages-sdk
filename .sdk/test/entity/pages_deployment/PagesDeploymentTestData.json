@@ -1,0 +1,103 @@
+{
+  "existing": {
+    "pages_deployment": {
+      "PAGES_DEPLOYMENT00": {
+        "errors": [],
+        "filters": [],
+        "id": "PAGES_DEPLOYMENT00",
+        "messages": [],
+        "result": {},
+        "success": false,
+        "account_id": "ACCOUNT01",
+        "deployment_id": "DEPLOYMENT01",
+        "project_id": "PROJECT01",
+        "project_name": "PROJECT_NAME01",
+        "tail_id": "TAIL01"
+      },
+      "PAGES_DEPLOYMENT01": {
+        "errors": [],
+        "filters": [],
+        "id": "PAGES_DEPLOYMENT01",
+        "messages": [],
+        "result": {},
+        "success": false,
+        "account_id": "ACCOUNT01",
+        "deployment_id": "DEPLOYMENT01",
+        "project_id": "PROJECT01",
+        "project_name": "PROJECT_NAME01",
+        "tail_id": "TAIL01"
+      },
+      "PAGES_DEPLOYMENT02": {
+        "errors": [],
+        "filters": [],
+        "id": "PAGES_DEPLOYMENT02",
+        "messages": [],
+        "result": {},
+        "success": false,
+        "account_id": "ACCOUNT01",
+        "deployment_id": "DEPLOYMENT01",
+        "project_id": "PROJECT01",
+        "project_name": "PROJECT_NAME01",
+        "tail_id": "TAIL01"
+      }
+    }
+  },
+  "new": {
+    "pages_deployment": {
+      "pages_deployment_ref01": {
+        "errors": [],
+        "filters": [],
+        "messages": [],
+        "result": {},
+        "success": false
+      }
+    }
+  },
+  "requests": {
+    "POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "POST /accounts/{account_id}/pages/projects/{project_name}/deployments": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /accounts/{account_id}/pages/projects/{project_name}/deployments": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "GET /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails/{tail_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    },
+    "DELETE /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}

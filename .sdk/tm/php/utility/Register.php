@@ -1,0 +1,70 @@
+<?php
+declare(strict_types=1);
+
+// CloudflarePages SDK utility registration
+
+require_once __DIR__ . '/../core/UtilityType.php';
+require_once __DIR__ . '/Clean.php';
+require_once __DIR__ . '/Done.php';
+require_once __DIR__ . '/MakeError.php';
+require_once __DIR__ . '/FeatureAdd.php';
+require_once __DIR__ . '/FeatureHook.php';
+require_once __DIR__ . '/FeatureInit.php';
+require_once __DIR__ . '/Fetcher.php';
+require_once __DIR__ . '/MakeFetchDef.php';
+require_once __DIR__ . '/MakeContext.php';
+require_once __DIR__ . '/MakeOptions.php';
+require_once __DIR__ . '/MakeRequest.php';
+require_once __DIR__ . '/MakeResponse.php';
+require_once __DIR__ . '/MakeResult.php';
+require_once __DIR__ . '/MakePoint.php';
+require_once __DIR__ . '/MakeSpec.php';
+require_once __DIR__ . '/MakeUrl.php';
+require_once __DIR__ . '/Param.php';
+require_once __DIR__ . '/PrepareAuth.php';
+require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
+require_once __DIR__ . '/PrepareHeaders.php';
+require_once __DIR__ . '/PrepareMethod.php';
+require_once __DIR__ . '/PrepareParams.php';
+require_once __DIR__ . '/PreparePath.php';
+require_once __DIR__ . '/PrepareQuery.php';
+require_once __DIR__ . '/ResultBasic.php';
+require_once __DIR__ . '/ResultBody.php';
+require_once __DIR__ . '/ResultHeaders.php';
+require_once __DIR__ . '/TransformRequest.php';
+require_once __DIR__ . '/TransformResponse.php';
+
+CloudflarePagesUtility::setRegistrar(function (CloudflarePagesUtility $u): void {
+    $u->clean = [CloudflarePagesClean::class, 'call'];
+    $u->done = [CloudflarePagesDone::class, 'call'];
+    $u->make_error = [CloudflarePagesMakeError::class, 'call'];
+    $u->feature_add = [CloudflarePagesFeatureAdd::class, 'call'];
+    $u->feature_hook = [CloudflarePagesFeatureHook::class, 'call'];
+    $u->feature_init = [CloudflarePagesFeatureInit::class, 'call'];
+    $u->fetcher = [CloudflarePagesFetcher::class, 'call'];
+    $u->make_fetch_def = [CloudflarePagesMakeFetchDef::class, 'call'];
+    $u->make_context = [CloudflarePagesMakeContext::class, 'call'];
+    $u->make_options = [CloudflarePagesMakeOptions::class, 'call'];
+    $u->make_request = [CloudflarePagesMakeRequest::class, 'call'];
+    $u->make_response = [CloudflarePagesMakeResponse::class, 'call'];
+    $u->make_result = [CloudflarePagesMakeResult::class, 'call'];
+    $u->make_point = [CloudflarePagesMakePoint::class, 'call'];
+    $u->make_spec = [CloudflarePagesMakeSpec::class, 'call'];
+    $u->make_url = [CloudflarePagesMakeUrl::class, 'call'];
+    $u->param = [CloudflarePagesParam::class, 'call'];
+    $u->prepare_auth = [CloudflarePagesPrepareAuth::class, 'call'];
+    $u->prepare_body = [CloudflarePagesPrepareBody::class, 'call'];
+    $u->prepare_headers = [CloudflarePagesPrepareHeaders::class, 'call'];
+    $u->prepare_method = [CloudflarePagesPrepareMethod::class, 'call'];
+    $u->prepare_params = [CloudflarePagesPrepareParams::class, 'call'];
+    $u->prepare_path = [CloudflarePagesPreparePath::class, 'call'];
+    $u->prepare_query = [CloudflarePagesPrepareQuery::class, 'call'];
+    $u->graphql_body = [CloudflarePagesGraphql::class, 'body'];
+    $u->graphql_errors = [CloudflarePagesGraphql::class, 'errors'];
+    $u->result_basic = [CloudflarePagesResultBasic::class, 'call'];
+    $u->result_body = [CloudflarePagesResultBody::class, 'call'];
+    $u->result_headers = [CloudflarePagesResultHeaders::class, 'call'];
+    $u->transform_request = [CloudflarePagesTransformRequest::class, 'call'];
+    $u->transform_response = [CloudflarePagesTransformResponse::class, 'call'];
+});

@@ -1,0 +1,1093 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>PagesProject | Cloudflare Pages</title><link rel="stylesheet" href="../assets/style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a>
+<header class="site-header"><a class="site-title" href="../index.html">Cloudflare Pages<span>SDK documentation</span></a><div class="site-links"><a class="repo-link" href="https://github.com/voxgig-sdk/cloudflare-pages-sdk">voxgig-sdk/cloudflare-pages-sdk</a></div></header>
+<div class="site-notice" role="note"></div>
+<div class="shell"><nav class="site-nav" aria-label="Documentation"><div class="search"><label for="search">Search documentation</label><input id="search" type="search" data-base="../" placeholder="Find a guide or reference"><div id="results" aria-live="polite"></div></div><details><summary>Overview</summary><a href="../index.html">Cloudflare Pages</a></details>
+<details open><summary>API</summary><a href="../api/index.html">API overview</a>
+<a href="../api/pages_deployment.html">PagesDeployment</a>
+<a href="../api/pages_domain.html">PagesDomain</a>
+<a href="../api/pages_pages_assets_check_missing.html">PagesPagesAssetsCheckMissing</a>
+<a aria-current="page" href="../api/pages_project.html">PagesProject</a><div class="nav-sections"><a class="nav-section" href="#post-accountsaccount_idpagesprojectsproject_namepurge_build_cache">POST /accounts/{account_id}/pages/projects/{project_name}/purge_build_cache</a>
+<a class="nav-section" href="#post-accountsaccount_idpagesprojectsproject_namesource">POST /accounts/{account_id}/pages/projects/{project_name}/source</a>
+<a class="nav-section" href="#post-accountsaccount_idpagesprojects">POST /accounts/{account_id}/pages/projects</a>
+<a class="nav-section" href="#get-accountsaccount_idpagesprojects">GET /accounts/{account_id}/pages/projects</a>
+<a class="nav-section" href="#get-accountsaccount_idpagesprojectsproject_nameupload-token">GET /accounts/{account_id}/pages/projects/{project_name}/upload-token</a>
+<a class="nav-section" href="#get-accountsaccount_idpagesprojectsproject_name">GET /accounts/{account_id}/pages/projects/{project_name}</a>
+<a class="nav-section" href="#delete-accountsaccount_idpagesprojectsproject_name">DELETE /accounts/{account_id}/pages/projects/{project_name}</a>
+<a class="nav-section" href="#delete-accountsaccount_idpagesprojectsproject_namesource">DELETE /accounts/{account_id}/pages/projects/{project_name}/source</a>
+<a class="nav-section" href="#patch-accountsaccount_idpagesprojectsproject_name">PATCH /accounts/{account_id}/pages/projects/{project_name}</a></div>
+<a href="../api/upload.html">Upload</a>
+<a href="../api/upsert_hash.html">UpsertHash</a></details>
+<details><summary>Guides</summary><a href="../guides/authentication.html">Authentication</a>
+<a href="../guides/first-call.html">Make your first API call</a>
+<a href="../guides/errors.html">Handle errors</a>
+<a href="../guides/concepts.html">Entities, SDKs, and tools</a></details>
+<details><summary>SDKs</summary><a href="../sdks/go.html">Golang</a>
+<a href="../sdks/lua.html">Lua</a>
+<a href="../sdks/php.html">PHP</a>
+<a href="../sdks/py.html">Python</a>
+<a href="../sdks/rb.html">Ruby</a>
+<a href="../sdks/ts.html">TypeScript</a></details>
+<details><summary>Tools</summary><a href="../tools/go-cli.html">Go CLI</a>
+<a href="../tools/go-mcp.html">Go MCP server</a></details>
+<details><summary>Features</summary><a href="../features/test.html">Test transport</a></details></nav><main id="content"><div class="page-context"><span class="section-dot" aria-hidden="true"></span>API</div><h1 id="pagesproject">PagesProject</h1>
+<h2 id="operations">Operations</h2>
+<p>Every route this entity exposes. Each route links to its own reference on this page.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Route</th>
+<th>SDK operation</th>
+<th>Returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-accountsaccount_idpagesprojectsproject_namepurge_build_cache"><code>/accounts/{account_id}/pages/projects/{project_name}/purge_build_cache</code></a></td>
+<td><code>create</code></td>
+<td>Purge build cache response</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-accountsaccount_idpagesprojectsproject_namesource"><code>/accounts/{account_id}/pages/projects/{project_name}/source</code></a></td>
+<td><code>create</code></td>
+<td>Connect project source response</td>
+</tr>
+<tr>
+<td><code>POST</code></td>
+<td><a href="#post-accountsaccount_idpagesprojects"><code>/accounts/{account_id}/pages/projects</code></a></td>
+<td><code>create</code></td>
+<td>Create project response</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-accountsaccount_idpagesprojects"><code>/accounts/{account_id}/pages/projects</code></a></td>
+<td><code>list</code></td>
+<td>Get projects response</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-accountsaccount_idpagesprojectsproject_nameupload-token"><code>/accounts/{account_id}/pages/projects/{project_name}/upload-token</code></a></td>
+<td><code>list</code></td>
+<td>Upload token response</td>
+</tr>
+<tr>
+<td><code>GET</code></td>
+<td><a href="#get-accountsaccount_idpagesprojectsproject_name"><code>/accounts/{account_id}/pages/projects/{project_name}</code></a></td>
+<td><code>load</code></td>
+<td>Get project response</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-accountsaccount_idpagesprojectsproject_name"><code>/accounts/{account_id}/pages/projects/{project_name}</code></a></td>
+<td><code>remove</code></td>
+<td>Delete project response</td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td><a href="#delete-accountsaccount_idpagesprojectsproject_namesource"><code>/accounts/{account_id}/pages/projects/{project_name}/source</code></a></td>
+<td><code>remove</code></td>
+<td>Disconnect project source response</td>
+</tr>
+<tr>
+<td><code>PATCH</code></td>
+<td><a href="#patch-accountsaccount_idpagesprojectsproject_name"><code>/accounts/{account_id}/pages/projects/{project_name}</code></a></td>
+<td><code>update</code></td>
+<td>Update project response</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2>
+<p>One example per SDK, generated from the API model. The argument names are the parameters and fields of this entity, and the values are placeholders. The examples are not compiled or executed.</p>
+<h3 id="golang">Golang</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/go.html#set-up-the-client">Golang setup</a>, then call the operations:</p>
+<pre><code class="language-go">pages_projects, err := client.PagesProject(nil).List(map[string]any{&quot;account_id&quot;: &quot;example&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(pages_projects)
+pages_project, err := client.PagesProject(nil).Load(map[string]any{&quot;account_id&quot;: &quot;example&quot;, &quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(pages_project)
+created, err := client.PagesProject(nil).Create(map[string]any{&quot;account_id&quot;: &quot;example&quot;, &quot;errors&quot;: []any{}, &quot;messages&quot;: []any{}, &quot;name&quot;: &quot;example&quot;, &quot;production_branch&quot;: &quot;example&quot;, &quot;result&quot;: map[string]any{}, &quot;source&quot;: map[string]any{}, &quot;success&quot;: true}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(created)
+updated, err := client.PagesProject(nil).Update(map[string]any{&quot;id&quot;: &quot;example_id&quot;, &quot;account_id&quot;: &quot;example&quot;, &quot;build_config&quot;: map[string]any{}}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(updated)
+removed, err := client.PagesProject(nil).Remove(map[string]any{&quot;account_id&quot;: &quot;example&quot;, &quot;id&quot;: &quot;example_id&quot;}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(removed)
+</code></pre>
+<h3 id="lua">Lua</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/lua.html#set-up-the-client">Lua setup</a>, then call the operations:</p>
+<pre><code class="language-lua">local pages_projects, err = client:PagesProject():list({ account_id = &quot;example&quot; })
+local pages_project, err = client:PagesProject():load({ account_id = &quot;example&quot;, id = &quot;example_id&quot; })
+local created, err = client:PagesProject():create({ account_id = &quot;example&quot;, errors = {}, messages = {}, name = &quot;example&quot;, production_branch = &quot;example&quot;, result = {}, source = {}, success = true })
+local updated, err = client:PagesProject():update({ id = &quot;example_id&quot;, account_id = &quot;example&quot;, build_config = {} })
+local removed, err = client:PagesProject():remove({ account_id = &quot;example&quot;, id = &quot;example_id&quot; })
+</code></pre>
+<h3 id="php">PHP</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/php.html#set-up-the-client">PHP setup</a>, then call the operations:</p>
+<pre><code class="language-php">$pages_projects = $client-&gt;PagesProject()-&gt;list([&quot;account_id&quot; =&gt; &quot;example&quot;]);
+$pages_project = $client-&gt;PagesProject()-&gt;load([&quot;account_id&quot; =&gt; &quot;example&quot;, &quot;id&quot; =&gt; &quot;example_id&quot;]);
+$created = $client-&gt;PagesProject()-&gt;create([&quot;account_id&quot; =&gt; &quot;example&quot;, &quot;errors&quot; =&gt; [], &quot;messages&quot; =&gt; [], &quot;name&quot; =&gt; &quot;example&quot;, &quot;production_branch&quot; =&gt; &quot;example&quot;, &quot;result&quot; =&gt; [], &quot;source&quot; =&gt; [], &quot;success&quot; =&gt; true]);
+$updated = $client-&gt;PagesProject()-&gt;update([&quot;id&quot; =&gt; &quot;example_id&quot;, &quot;account_id&quot; =&gt; &quot;example&quot;, &quot;build_config&quot; =&gt; []]);
+$client-&gt;PagesProject()-&gt;remove([&quot;account_id&quot; =&gt; &quot;example&quot;, &quot;id&quot; =&gt; &quot;example_id&quot;]);
+</code></pre>
+<h3 id="python">Python</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/py.html#set-up-the-client">Python setup</a>, then call the operations:</p>
+<pre><code class="language-py">pages_projects = client.PagesProject().list({&quot;account_id&quot;: &quot;example&quot;})
+pages_project = client.PagesProject().load({&quot;account_id&quot;: &quot;example&quot;, &quot;id&quot;: &quot;example_id&quot;})
+created = client.PagesProject().create({ &quot;account_id&quot;: &quot;example&quot;, &quot;errors&quot;: [], &quot;messages&quot;: [], &quot;name&quot;: &quot;example&quot;, &quot;production_branch&quot;: &quot;example&quot;, &quot;result&quot;: {}, &quot;source&quot;: {}, &quot;success&quot;: True })
+updated = client.PagesProject().update({&quot;id&quot;: &quot;example_id&quot;, &quot;account_id&quot;: &quot;example&quot;, &quot;build_config&quot;: {}})
+client.PagesProject().remove({&quot;account_id&quot;: &quot;example&quot;, &quot;id&quot;: &quot;example_id&quot;})
+</code></pre>
+<h3 id="ruby">Ruby</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/rb.html#set-up-the-client">Ruby setup</a>, then call the operations:</p>
+<pre><code class="language-rb">pages_projects = client.PagesProject.list({ &quot;account_id&quot; =&gt; &quot;example&quot; })
+pages_project = client.PagesProject.load({ &quot;account_id&quot; =&gt; &quot;example&quot;, &quot;id&quot; =&gt; &quot;example_id&quot; })
+created = client.PagesProject.create({ &quot;account_id&quot; =&gt; &quot;example&quot;, &quot;errors&quot; =&gt; [], &quot;messages&quot; =&gt; [], &quot;name&quot; =&gt; &quot;example&quot;, &quot;production_branch&quot; =&gt; &quot;example&quot;, &quot;result&quot; =&gt; {}, &quot;source&quot; =&gt; {}, &quot;success&quot; =&gt; true })
+updated = client.PagesProject.update({ &quot;id&quot; =&gt; &quot;example_id&quot;, &quot;account_id&quot; =&gt; &quot;example&quot;, &quot;build_config&quot; =&gt; {} })
+client.PagesProject.remove({ &quot;account_id&quot; =&gt; &quot;example&quot;, &quot;id&quot; =&gt; &quot;example_id&quot; })
+</code></pre>
+<h3 id="typescript">TypeScript</h3>
+<p>Construct <code>client</code> as shown in the <a href="../sdks/ts.html#set-up-the-client">TypeScript setup</a>, then call the operations:</p>
+<pre><code class="language-ts">const pages_projects = await client.PagesProject().list({ account_id: &quot;example&quot; })
+const pages_project = await client.PagesProject().load({ account_id: &quot;example&quot;, id: &quot;example_id&quot; })
+const created = await client.PagesProject().create({ account_id: &quot;example&quot;, errors: [], messages: [], name: &quot;example&quot;, production_branch: &quot;example&quot;, result: {}, source: {}, success: true })
+const updated = await client.PagesProject().update({ id: &quot;example_id&quot;, account_id: &quot;example&quot;, build_config: {} })
+await client.PagesProject().remove({ account_id: &quot;example&quot;, id: &quot;example_id&quot; })
+</code></pre>
+<h2 id="fields">Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build_config</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for the project build process.</td>
+</tr>
+<tr>
+<td><code>deployment_configs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for deployments in a project.</td>
+</tr>
+<tr>
+<td><code>errors</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Errors</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Id</td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array</code></td>
+<td>Yes</td>
+<td>Messages</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Name for the Pages project.</td>
+</tr>
+<tr>
+<td><code>production_branch</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Production branch of the project.</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Result</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td>Configs for the project source control.</td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>boolean</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="create">create</h2>
+<h3 id="post-accountsaccount_idpagesprojectsproject_namepurge_build_cache" class="operation" data-method="post"><code>POST</code> /accounts/{account_id}/pages/projects/{project_name}/purge_build_cache</h3>
+<p>Operation ID: <code>pages-purge-build-cache</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses">Responses</h4>
+<h5 id="200-purge-build-cache-response" class="status" data-status="2xx">200: Purge build cache response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-purge-build-cache-failure">4XX: Purge build cache failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-accountsaccount_idpagesprojectsproject_namesource" class="operation" data-method="post"><code>POST</code> /accounts/{account_id}/pages/projects/{project_name}/source</h3>
+<p>Operation ID: <code>pages-project-connect-project-source</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-1">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td><code>enum: github, gitlab</code></td>
+<td>Yes</td>
+<td>The source control management provider.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-1">Responses</h4>
+<h5 id="200-connect-project-source-response" class="status" data-status="2xx">200: Connect project source response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-connect-project-source-response-failure">4XX: Connect project source response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="post-accountsaccount_idpagesprojects" class="operation" data-method="post"><code>POST</code> /accounts/{account_id}/pages/projects</h3>
+<p>Operation ID: <code>pages-project-create-project</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-2">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-1">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build_config</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for the project build process.</td>
+</tr>
+<tr>
+<td><code>build_config.build_caching</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Enable build caching for the project.</td>
+</tr>
+<tr>
+<td><code>build_config.build_command</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Command used to build project.</td>
+</tr>
+<tr>
+<td><code>build_config.destination_dir</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Output directory of the build.</td>
+</tr>
+<tr>
+<td><code>build_config.root_dir</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Directory to run the command.</td>
+</tr>
+<tr>
+<td><code>build_config.web_analytics_tag</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The classifying tag for analytics.</td>
+</tr>
+<tr>
+<td><code>build_config.web_analytics_token</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The auth token for analytics.</td>
+</tr>
+<tr>
+<td><code>deployment_configs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for deployments in a project.</td>
+</tr>
+<tr>
+<td><code>deployment_configs.preview</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for preview deploys.</td>
+</tr>
+<tr>
+<td><code>deployment_configs.production</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for production deploys.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Name for the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.</td>
+</tr>
+<tr>
+<td><code>production_branch</code></td>
+<td><code>string</code></td>
+<td>Yes</td>
+<td>Production branch of the project. Used to identify production deployments.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for the project source control.</td>
+</tr>
+<tr>
+<td><code>source.config</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>source.config.deployments_enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether to enable automatic deployments when pushing to the source repository. When disabled, no deployments (production or preview) will be triggered automatically.</td>
+</tr>
+<tr>
+<td><code>source.config.owner</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The owner of the repository.</td>
+</tr>
+<tr>
+<td><code>source.config.owner_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The owner ID of the repository.</td>
+</tr>
+<tr>
+<td><code>source.config.path_excludes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of paths that should be excluded from triggering a preview deployment. Wildcard syntax (<code>*</code>) is supported.</td>
+</tr>
+<tr>
+<td><code>source.config.path_includes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of paths that should be watched to trigger a preview deployment. Wildcard syntax (<code>*</code>) is supported.</td>
+</tr>
+<tr>
+<td><code>source.config.pr_comments_enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether to enable PR comments.</td>
+</tr>
+<tr>
+<td><code>source.config.preview_branch_excludes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of branches that should not trigger a preview deployment. Wildcard syntax (<code>*</code>) is supported. Must be used with <code>preview_deployment_setting</code> set to <code>custom</code>.</td>
+</tr>
+<tr>
+<td><code>source.config.preview_branch_includes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of branches that should trigger a preview deployment. Wildcard syntax (<code>*</code>) is supported. Must be used with <code>preview_deployment_setting</code> set to <code>custom</code>.</td>
+</tr>
+<tr>
+<td><code>source.config.preview_deployment_setting</code></td>
+<td><code>enum: all, none, custom</code></td>
+<td>No</td>
+<td>Controls whether commits to preview branches trigger a preview deployment.</td>
+</tr>
+<tr>
+<td><code>source.config.production_branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The production branch of the repository.</td>
+</tr>
+<tr>
+<td><code>source.config.production_deployments_enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether to trigger a production deployment on commits to the production branch.</td>
+</tr>
+<tr>
+<td><code>source.config.repo_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the repository.</td>
+</tr>
+<tr>
+<td><code>source.config.repo_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the repository.</td>
+</tr>
+<tr>
+<td><code>source.type</code></td>
+<td><code>enum: github, gitlab</code></td>
+<td>Yes</td>
+<td>The source control management provider.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-2">Responses</h4>
+<h5 id="200-create-project-response" class="status" data-status="2xx">200: Create project response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-create-project-response-failure">4XX: Create project response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list">list</h2>
+<h3 id="get-accountsaccount_idpagesprojects" class="operation" data-method="get"><code>GET</code> /accounts/{account_id}/pages/projects</h3>
+<p>Operation ID: <code>pages-project-get-projects</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-3">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>page</code> | <code>query</code> | <code>integer</code> | No |  |
+| <code>per_page</code> | <code>query</code> | <code>integer</code> | No |  |</p>
+<h4 id="responses-3">Responses</h4>
+<h5 id="200-get-projects-response" class="status" data-status="2xx">200: Get projects response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object and object</code>.</p>
+<h5 id="4xx-get-projects-response-failure">4XX: Get projects response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="get-accountsaccount_idpagesprojectsproject_nameupload-token" class="operation" data-method="get"><code>GET</code> /accounts/{account_id}/pages/projects/{project_name}/upload-token</h3>
+<p>Operation ID: <code>pages-project-get-upload-token</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-4">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-4">Responses</h4>
+<h5 id="200-upload-token-response" class="status" data-status="2xx">200: Upload token response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-upload-token-failure">4XX: Upload token failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="load">load</h2>
+<h3 id="get-accountsaccount_idpagesprojectsproject_name" class="operation" data-method="get"><code>GET</code> /accounts/{account_id}/pages/projects/{project_name}</h3>
+<p>Operation ID: <code>pages-project-get-project</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-5">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-5">Responses</h4>
+<h5 id="200-get-project-response" class="status" data-status="2xx">200: Get project response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-get-project-response-failure">4XX: Get project response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="remove">remove</h2>
+<h3 id="delete-accountsaccount_idpagesprojectsproject_name" class="operation" data-method="delete"><code>DELETE</code> /accounts/{account_id}/pages/projects/{project_name}</h3>
+<p>Operation ID: <code>pages-project-delete-project</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-6">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-6">Responses</h4>
+<h5 id="200-delete-project-response" class="status" data-status="2xx">200: Delete project response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-delete-project-response-failure">4XX: Delete project response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="delete-accountsaccount_idpagesprojectsproject_namesource" class="operation" data-method="delete"><code>DELETE</code> /accounts/{account_id}/pages/projects/{project_name}/source</h3>
+<p>Operation ID: <code>pages-project-disconnect-project-source</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-7">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="responses-7">Responses</h4>
+<h5 id="200-disconnect-project-source-response" class="status" data-status="2xx">200: Disconnect project source response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-disconnect-project-source-response-failure">4XX: Disconnect project source response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="update">update</h2>
+<h3 id="patch-accountsaccount_idpagesprojectsproject_name" class="operation" data-method="patch"><code>PATCH</code> /accounts/{account_id}/pages/projects/{project_name}</h3>
+<p>Operation ID: <code>pages-project-update-project</code>.</p>
+<p>Authentication: bearer token (<code>api_token</code>) or API key in the header (<code>api_email</code>) or API key in the header (<code>api_key</code>).</p>
+<h4 id="parameters-8">Parameters</h4>
+<p>| Parameter | In | Type | Required | Description |
+| --- | --- | --- | --- |
+| <code>project_name</code> | <code>path</code> | <code>string</code> | Yes |  |
+| <code>account_id</code> | <code>path</code> | <code>string</code> | Yes |  |</p>
+<h4 id="request-body-2">Request body</h4>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build_config</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for the project build process.</td>
+</tr>
+<tr>
+<td><code>build_config.build_caching</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Enable build caching for the project.</td>
+</tr>
+<tr>
+<td><code>build_config.build_command</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Command used to build project.</td>
+</tr>
+<tr>
+<td><code>build_config.destination_dir</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Output directory of the build.</td>
+</tr>
+<tr>
+<td><code>build_config.root_dir</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Directory to run the command.</td>
+</tr>
+<tr>
+<td><code>build_config.web_analytics_tag</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The classifying tag for analytics.</td>
+</tr>
+<tr>
+<td><code>build_config.web_analytics_token</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The auth token for analytics.</td>
+</tr>
+<tr>
+<td><code>deployment_configs</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for deployments in a project.</td>
+</tr>
+<tr>
+<td><code>deployment_configs.preview</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for preview deploys.</td>
+</tr>
+<tr>
+<td><code>deployment_configs.production</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for production deploys.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Name for the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.</td>
+</tr>
+<tr>
+<td><code>production_branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>Production branch of the project. Used to identify production deployments.</td>
+</tr>
+<tr>
+<td><code>source</code></td>
+<td><code>object</code></td>
+<td>No</td>
+<td>Configs for the project source control.</td>
+</tr>
+<tr>
+<td><code>source.config</code></td>
+<td><code>object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>source.config.deployments_enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether to enable automatic deployments when pushing to the source repository. When disabled, no deployments (production or preview) will be triggered automatically.</td>
+</tr>
+<tr>
+<td><code>source.config.owner</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The owner of the repository.</td>
+</tr>
+<tr>
+<td><code>source.config.owner_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The owner ID of the repository.</td>
+</tr>
+<tr>
+<td><code>source.config.path_excludes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of paths that should be excluded from triggering a preview deployment. Wildcard syntax (<code>*</code>) is supported.</td>
+</tr>
+<tr>
+<td><code>source.config.path_includes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of paths that should be watched to trigger a preview deployment. Wildcard syntax (<code>*</code>) is supported.</td>
+</tr>
+<tr>
+<td><code>source.config.pr_comments_enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether to enable PR comments.</td>
+</tr>
+<tr>
+<td><code>source.config.preview_branch_excludes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of branches that should not trigger a preview deployment. Wildcard syntax (<code>*</code>) is supported. Must be used with <code>preview_deployment_setting</code> set to <code>custom</code>.</td>
+</tr>
+<tr>
+<td><code>source.config.preview_branch_includes</code></td>
+<td><code>array of string</code></td>
+<td>No</td>
+<td>A list of branches that should trigger a preview deployment. Wildcard syntax (<code>*</code>) is supported. Must be used with <code>preview_deployment_setting</code> set to <code>custom</code>.</td>
+</tr>
+<tr>
+<td><code>source.config.preview_deployment_setting</code></td>
+<td><code>enum: all, none, custom</code></td>
+<td>No</td>
+<td>Controls whether commits to preview branches trigger a preview deployment.</td>
+</tr>
+<tr>
+<td><code>source.config.production_branch</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The production branch of the repository.</td>
+</tr>
+<tr>
+<td><code>source.config.production_deployments_enabled</code></td>
+<td><code>boolean</code></td>
+<td>No</td>
+<td>Whether to trigger a production deployment on commits to the production branch.</td>
+</tr>
+<tr>
+<td><code>source.config.repo_id</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The ID of the repository.</td>
+</tr>
+<tr>
+<td><code>source.config.repo_name</code></td>
+<td><code>string</code></td>
+<td>No</td>
+<td>The name of the repository.</td>
+</tr>
+<tr>
+<td><code>source.type</code></td>
+<td><code>enum: github, gitlab</code></td>
+<td>Yes</td>
+<td>The source control management provider.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="responses-8">Responses</h4>
+<h5 id="200-update-project-response" class="status" data-status="2xx">200: Update project response</h5>
+<p><code>application/json</code></p>
+<p>The response is <code>object and object</code>.</p>
+<h5 id="4xx-update-project-response-failure">4XX: Update project response failure</h5>
+<p><code>application/json</code></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>errors</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>messages</code></td>
+<td><code>array of object</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td><code>enum: null</code></td>
+<td>Yes</td>
+<td></td>
+</tr>
+<tr>
+<td><code>success</code></td>
+<td><code>enum: false</code></td>
+<td>Yes</td>
+<td>Whether the API call was successful.</td>
+</tr>
+</tbody>
+</table>
+</main></div>
+<script src="../assets/search.js" defer></script></body></html>

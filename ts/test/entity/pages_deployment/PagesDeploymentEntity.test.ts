@@ -1,0 +1,195 @@
+
+
+import Path from 'node:path'
+import * as Fs from 'node:fs'
+
+import { test, describe, afterEach } from 'node:test'
+import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
+
+
+import { CloudflarePagesSDK, BaseFeature, stdutil } from '../../..'
+
+import {
+  envOverride,
+  liveClientOptions,
+  liveDelay,
+  loadEnvLocal,
+  makeCtrl,
+  makeMatch,
+  makeReqdata,
+  makeStepData,
+  makeValid,
+  maybeSkipControl,
+} from '../../utility'
+
+
+loadEnvLocal(__dirname + '/../../../.env.local')
+
+
+describe('PagesDeploymentEntity', async () => {
+
+  // Per-test live pacing. Delay is read from sdk-test-control.json's
+  // `test.live.delayMs`; only sleeps when CLOUDFLARE_PAGES_TEST_LIVE=TRUE.
+  afterEach(liveDelay('CLOUDFLARE_PAGES_TEST_LIVE'))
+
+  test('instance', async () => {
+    const testsdk = CloudflarePagesSDK.test()
+    const ent = testsdk.PagesDeployment()
+    assert(null != ent)
+  })
+
+
+  test('basic', async (t) => {
+
+    const live = 'TRUE' === process.env.CLOUDFLARE_PAGES_TEST_LIVE
+    for (const op of ['create', 'list', 'load', 'remove']) {
+      if (!live && maybeSkipControl(t, 'entityOp', 'pages_deployment.' + op, live)) return
+    }
+
+    
+    const setup = basicSetup()
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"errors":{"a":true,"h":"Errors","n":"errors","r":true,"t":"`$ARRAY`","key$":"errors","index$":0},"filters":{"a":true,"h":"Filters","n":"filters","r":false,"sh":"Filters to apply to the tail session.","t":"`$ARRAY`","key$":"filters","index$":1},"id":{"a":true,"h":"Id","n":"id","r":false,"t":"`$STRING`","key$":"id","index$":2},"messages":{"a":true,"h":"Messages","n":"messages","r":true,"t":"`$ARRAY`","key$":"messages","index$":3},"result":{"a":true,"h":"Result","n":"result","r":true,"t":"`$OBJECT`","key$":"result","index$":4},"success":{"a":true,"h":"Success","n":"success","r":true,"sh":"Whether the API call was successful.","t":"`$BOOLEAN`","key$":"success","index$":5}},"id":{"field":"id","name":"id"},"name":"pages_deployment","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"023e105f4ecef8ad9ca31a8372d0c353","k":"param","n":"account_id","or":"account_id","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","k":"param","n":"deployment_id","or":"deployment_id","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"this-is-my-project-01","k":"param","n":"project_id","or":"project_name","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"POST","o":"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry","q":{"$action":"retry","exist":["account_id","deployment_id","project_id"]},"r":{"param":{"project_name":"project_id"}},"s":[{"lit":"accounts"},{"var":"account_id"},{"lit":"pages"},{"lit":"projects"},{"var":"project_id"},{"lit":"deployments"},{"var":"deployment_id"},{"lit":"retry"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"023e105f4ecef8ad9ca31a8372d0c353","k":"param","n":"account_id","or":"account_id","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","k":"param","n":"deployment_id","or":"deployment_id","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"this-is-my-project-01","k":"param","n":"project_id","or":"project_name","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"POST","o":"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback","q":{"$action":"rollback","exist":["account_id","deployment_id","project_id"]},"r":{"param":{"project_name":"project_id"}},"s":[{"lit":"accounts"},{"var":"account_id"},{"lit":"pages"},{"lit":"projects"},{"var":"project_id"},{"lit":"deployments"},{"var":"deployment_id"},{"lit":"rollback"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1},{"a":true,"co":{"id":"POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"023e105f4ecef8ad9ca31a8372d0c353","k":"param","n":"account_id","or":"account_id","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","k":"param","n":"deployment_id","or":"deployment_id","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"this-is-my-project-01","k":"param","n":"project_id","or":"project_name","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"POST","o":"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails","q":{"exist":["account_id","deployment_id","project_id"]},"r":{"param":{"project_name":"project_id"}},"s":[{"lit":"accounts"},{"var":"account_id"},{"lit":"pages"},{"lit":"projects"},{"var":"project_id"},{"lit":"deployments"},{"var":"deployment_id"},{"lit":"tails"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":2},{"a":true,"co":{"id":"POST /accounts/{account_id}/pages/projects/{project_name}/deployments","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"023e105f4ecef8ad9ca31a8372d0c353","k":"param","n":"account_id","or":"account_id","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"this-is-my-project-01","k":"param","n":"project_name","or":"project_name","r":true,"t":"`$STRING`","index$":1}]},"k":"http","m":"POST","o":"/accounts/{account_id}/pages/projects/{project_name}/deployments","q":{"exist":["account_id","project_name"]},"r":{},"s":[{"lit":"accounts"},{"var":"account_id"},{"lit":"pages"},{"lit":"projects"},{"var":"project_name"},{"lit":"deployments"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":3}],"key$":"create"},"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /accounts/{account_id}/pages/projects/{project_name}/deployments","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"023e105f4ecef8ad9ca31a8372d0c353","k":"param","n":"account_id","or":"account_id","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"this-is-my-project-01","k":"param","n":"project_name","or":"project_name","r":true,"t":"`$STRING`","index$":1}],"query":[{"a":true,"ex":"preview","k":"query","n":"env","or":"env","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":1,"k":"query","n":"page","or":"page","r":false,"t":"`$INTEGER`","index$":1},{"a":true,"ex":10,"k":"query","n":"per_page","or":"per_page","r":false,"t":"`$INTEGER`","index$":2}]},"k":"http","m":"GET","o":"/accounts/{account_id}/pages/projects/{project_name}/deployments","q":{"exist":["account_id","env","page","per_page","project_name"]},"r":{},"s":[{"lit":"accounts"},{"var":"account_id"},{"lit":"pages"},{"lit":"projects"},{"var":"project_name"},{"lit":"deployments"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"GET /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"023e105f4ecef8ad9ca31a8372d0c353","k":"param","n":"account_id","or":"account_id","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","k":"param","n":"deployment_id","or":"deployment_id","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"this-is-my-project-01","k":"param","n":"project_id","or":"project_name","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs","q":{"exist":["account_id","deployment_id","project_id"]},"r":{"param":{"project_name":"project_id"}},"s":[{"lit":"accounts"},{"var":"account_id"},{"lit":"pages"},{"lit":"projects"},{"var":"project_id"},{"lit":"deployments"},{"var":"deployment_id"},{"lit":"history"},{"lit":"logs"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"023e105f4ecef8ad9ca31a8372d0c353","k":"param","n":"account_id","or":"account_id","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","k":"param","n":"id","or":"deployment_id","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"this-is-my-project-01","k":"param","n":"project_id","or":"project_name","r":true,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}","q":{"exist":["account_id","id","project_id"]},"r":{"param":{"deployment_id":"id","project_name":"project_id"}},"s":[{"lit":"accounts"},{"var":"account_id"},{"lit":"pages"},{"lit":"projects"},{"var":"project_id"},{"lit":"deployments"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"},"remove":{"input":"data","name":"remove","points":[{"a":true,"co":{"id":"DELETE /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails/{tail_id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"023e105f4ecef8ad9ca31a8372d0c353","k":"param","n":"account_id","or":"account_id","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","k":"param","n":"deployment_id","or":"deployment_id","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"this-is-my-project-01","k":"param","n":"project_id","or":"project_name","r":true,"t":"`$STRING`","index$":2},{"a":true,"ex":"023e105f4ecef8ad9ca31a8372d0c353","k":"param","n":"tail_id","or":"tail_id","r":true,"t":"`$STRING`","index$":3}]},"k":"http","m":"DELETE","o":"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails/{tail_id}","q":{"exist":["account_id","deployment_id","project_id","tail_id"]},"r":{"param":{"project_name":"project_id"}},"s":[{"lit":"accounts"},{"var":"account_id"},{"lit":"pages"},{"lit":"projects"},{"var":"project_id"},{"lit":"deployments"},{"var":"deployment_id"},{"lit":"tails"},{"var":"tail_id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"DELETE /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"023e105f4ecef8ad9ca31a8372d0c353","k":"param","n":"account_id","or":"account_id","r":true,"t":"`$STRING`","index$":0},{"a":true,"ex":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","k":"param","n":"id","or":"deployment_id","r":true,"t":"`$STRING`","index$":1},{"a":true,"ex":"this-is-my-project-01","k":"param","n":"project_id","or":"project_name","r":true,"t":"`$STRING`","index$":2}],"query":[{"a":true,"ex":true,"k":"query","n":"force","or":"force","r":false,"t":"`$BOOLEAN`","index$":0}]},"k":"http","m":"DELETE","o":"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}","q":{"exist":["account_id","force","id","project_id"]},"r":{"param":{"deployment_id":"id","project_name":"project_id"}},"s":[{"lit":"accounts"},{"var":"account_id"},{"lit":"pages"},{"lit":"projects"},{"var":"project_id"},{"lit":"deployments"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"remove"}},"relations":{"ancestors":[]},"key$":"pages_deployment","name__orig":"pages_deployment","Name":"PagesDeployment","name_":"pages_deployment","name-":"pages-deployment","NAME":"PAGES_DEPLOYMENT","index$":0}, {"active":true,"entity":"pages_deployment","key$":"BasicPagesDeploymentFlow","kind":"basic","name":"BasicPagesDeploymentFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"pages_deployment_ref01"},"m":{"account_id":"account01","deployment_id":"deployment01","project_id":"project01","project_name":"project_name01"},"o":"create","s":[],"v":[],"index$":0},{"a":true,"d":{},"i":{},"m":{"account_id":"account01","deployment_id":"deployment01","project_id":"project01"},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"pages_deployment_ref01"}}],"index$":1},{"a":true,"d":{},"i":{"ref":"pages_deployment_ref01","srcdatavar":"pages_deployment_ref01_data","suffix":"_dt0"},"m":{"account_id":"account01","id":"pages_deployment01","project_id":"project01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-pages_deployment_ref01"}}],"index$":2},{"a":true,"d":{},"i":{"ref":"pages_deployment_ref01","suffix":"_rm0"},"m":{"account_id":"account01","id":"pages_deployment01","project_id":"project01"},"o":"remove","s":[],"v":[],"index$":3},{"a":true,"d":{},"i":{"suffix":"_rt0"},"m":{"account_id":"account01","deployment_id":"deployment01","project_id":"project01"},"o":"list","s":[],"v":[{"apply":"ItemNotExists","def":{"ref":"pages_deployment_ref01"}}],"index$":4}]}, 'PagesDeployment', {"POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/retry":{"protocol":"http","parameters":[{"name":"deployment_id","in":"path","required":true,"schema":{"description":"UUID of the Pages deployment, as returned by deployment list or create operations.","type":"string","format":"uuid","example":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","x-auditable":true,"x-ref":"#/components/schemas/pages_deployment_id"},"index$":0},{"name":"project_name","in":"path","required":true,"schema":{"description":"Name of the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.","type":"string","example":"this-is-my-project-01","pattern":"^[a-z0-9][a-z0-9-]*$","x-auditable":true,"x-ref":"#/components/schemas/pages_project_name"},"index$":1},{"name":"account_id","in":"path","required":true,"schema":{"description":"Identifier.","type":"string","example":"023e105f4ecef8ad9ca31a8372d0c353","maxLength":32,"x-auditable":true,"x-ref":"#/components/schemas/pages_identifier"},"index$":2}]},"POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/rollback":{"protocol":"http","parameters":[{"name":"deployment_id","in":"path","required":true,"schema":{"description":"UUID of the Pages deployment, as returned by deployment list or create operations.","type":"string","format":"uuid","example":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","x-auditable":true,"x-ref":"#/components/schemas/pages_deployment_id"},"index$":0},{"name":"project_name","in":"path","required":true,"schema":{"description":"Name of the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.","type":"string","example":"this-is-my-project-01","pattern":"^[a-z0-9][a-z0-9-]*$","x-auditable":true,"x-ref":"#/components/schemas/pages_project_name"},"index$":1},{"name":"account_id","in":"path","required":true,"schema":{"description":"Identifier.","type":"string","example":"023e105f4ecef8ad9ca31a8372d0c353","maxLength":32,"x-auditable":true,"x-ref":"#/components/schemas/pages_identifier"},"index$":2}]},"POST /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","properties":{"filters":{"description":"Filters to apply to the tail session.","type":"array","items":{"additionalProperties":true,"type":"object"},"key$":"filters"}},"example":{"filters":[{"outcome":["exception"]}]},"index$":1}}}},"parameters":[{"name":"deployment_id","in":"path","required":true,"schema":{"description":"UUID of the Pages deployment, as returned by deployment list or create operations.","type":"string","format":"uuid","example":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","x-auditable":true,"x-ref":"#/components/schemas/pages_deployment_id"},"index$":0},{"name":"project_name","in":"path","required":true,"schema":{"description":"Name of the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.","type":"string","example":"this-is-my-project-01","pattern":"^[a-z0-9][a-z0-9-]*$","x-auditable":true,"x-ref":"#/components/schemas/pages_project_name"},"index$":1},{"name":"account_id","in":"path","required":true,"schema":{"description":"Identifier.","type":"string","example":"023e105f4ecef8ad9ca31a8372d0c353","maxLength":32,"x-auditable":true,"x-ref":"#/components/schemas/pages_identifier"},"index$":2}]},"POST /accounts/{account_id}/pages/projects/{project_name}/deployments":{"protocol":"http","requestBody":{"required":true,"content":{"multipart/form-data":{"encoding":{"_headers":{"contentType":"text/plain"},"_redirects":{"contentType":"text/plain"},"_routes.json":{"contentType":"application/json"},"_worker.bundle":{"contentType":"multipart/form-data"},"_worker.js":{"contentType":"application/javascript+module, text/javascript+module, application/javascript, text/javascript"},"functions-filepath-routing-config.json":{"contentType":"application/json"},"manifest":{"contentType":"application/json"}},"schema":{"type":"object","properties":{"_headers":{"description":"Headers configuration file for the deployment.","type":"string","format":"binary"},"_redirects":{"description":"Redirects configuration file for the deployment.","type":"string","format":"binary"},"_routes.json":{"description":"Routes configuration file defining routing rules.","type":"string","format":"binary"},"_worker.bundle":{"description":"Worker bundle file in multipart/form-data format. Mutually exclusive with `_worker.js`.\nCannot specify both `_worker.js` and `_worker.bundle` in the same request.\nMaximum size: 25 MiB.\n","type":"string","format":"binary"},"_worker.js":{"description":"Worker JavaScript file. Mutually exclusive with `_worker.bundle`.\nCannot specify both `_worker.js` and `_worker.bundle` in the same request.\n","type":"string","format":"binary"},"branch":{"description":"Git branch to deploy. Uses the branch's `HEAD`; defaults to the project's production branch.","type":"string","example":"staging","x-auditable":true},"commit_dirty":{"description":"Whether the associated Git working tree has uncommitted changes. Provide `true` or `false`.","type":"string","example":"false","enum":["true","false"]},"commit_hash":{"description":"Git commit SHA associated with the deployment.","type":"string","example":"a1b2c3d4e5f6"},"commit_message":{"description":"Git commit message associated with the deployment.","type":"string","example":"Update homepage"},"functions-filepath-routing-config.json":{"description":"Functions routing configuration file.","type":"string","format":"binary"},"manifest":{"description":"JSON-encoded object mapping deployment file paths to their uploaded content hashes.\nRequired for Direct Upload deployments. Maximum 20,000 entries.\n","type":"string","example":"{\"index.html\": \"abc123\", \"style.css\": \"def456\"}"},"pages_build_output_dir":{"description":"The build output directory path.","type":"string","example":"dist"},"wrangler_config_hash":{"description":"Hash of the Wrangler configuration file used for this deployment.","type":"string"}}}}}},"parameters":[{"name":"project_name","in":"path","required":true,"schema":{"description":"Name of the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.","type":"string","example":"this-is-my-project-01","pattern":"^[a-z0-9][a-z0-9-]*$","x-auditable":true,"x-ref":"#/components/schemas/pages_project_name"},"index$":0},{"name":"account_id","in":"path","required":true,"schema":{"description":"Identifier.","type":"string","example":"023e105f4ecef8ad9ca31a8372d0c353","maxLength":32,"x-auditable":true,"x-ref":"#/components/schemas/pages_identifier"},"index$":1}]},"GET /accounts/{account_id}/pages/projects/{project_name}/deployments":{"protocol":"http","parameters":[{"name":"project_name","in":"path","required":true,"schema":{"description":"Name of the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.","type":"string","example":"this-is-my-project-01","pattern":"^[a-z0-9][a-z0-9-]*$","x-auditable":true,"x-ref":"#/components/schemas/pages_project_name"},"index$":0},{"name":"account_id","in":"path","required":true,"schema":{"description":"Identifier.","type":"string","example":"023e105f4ecef8ad9ca31a8372d0c353","maxLength":32,"x-auditable":true,"x-ref":"#/components/schemas/pages_identifier"},"index$":1},{"name":"env","in":"query","schema":{"description":"Deployment environment to return. Valid values are `production` and `preview`.","type":"string","example":"preview","enum":["production","preview"]},"index$":2},{"name":"page","in":"query","schema":{"description":"Page number of results to return.","type":"integer","example":1},"index$":3},{"name":"per_page","in":"query","schema":{"description":"Number of results to return per page.","type":"integer","example":10},"index$":4}]},"GET /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs":{"protocol":"http","parameters":[{"name":"deployment_id","in":"path","required":true,"schema":{"description":"UUID of the Pages deployment, as returned by deployment list or create operations.","type":"string","format":"uuid","example":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","x-auditable":true,"x-ref":"#/components/schemas/pages_deployment_id"},"index$":0},{"name":"project_name","in":"path","required":true,"schema":{"description":"Name of the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.","type":"string","example":"this-is-my-project-01","pattern":"^[a-z0-9][a-z0-9-]*$","x-auditable":true,"x-ref":"#/components/schemas/pages_project_name"},"index$":1},{"name":"account_id","in":"path","required":true,"schema":{"description":"Identifier.","type":"string","example":"023e105f4ecef8ad9ca31a8372d0c353","maxLength":32,"x-auditable":true,"x-ref":"#/components/schemas/pages_identifier"},"index$":2}]},"GET /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}":{"protocol":"http","parameters":[{"name":"deployment_id","in":"path","required":true,"schema":{"description":"UUID of the Pages deployment, as returned by deployment list or create operations.","type":"string","format":"uuid","example":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","x-auditable":true,"x-ref":"#/components/schemas/pages_deployment_id"},"index$":0},{"name":"project_name","in":"path","required":true,"schema":{"description":"Name of the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.","type":"string","example":"this-is-my-project-01","pattern":"^[a-z0-9][a-z0-9-]*$","x-auditable":true,"x-ref":"#/components/schemas/pages_project_name"},"index$":1},{"name":"account_id","in":"path","required":true,"schema":{"description":"Identifier.","type":"string","example":"023e105f4ecef8ad9ca31a8372d0c353","maxLength":32,"x-auditable":true,"x-ref":"#/components/schemas/pages_identifier"},"index$":2}]},"DELETE /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/tails/{tail_id}":{"protocol":"http","parameters":[{"name":"tail_id","in":"path","required":true,"schema":{"description":"Identifier.","type":"string","example":"023e105f4ecef8ad9ca31a8372d0c353","maxLength":32,"x-auditable":true,"x-ref":"#/components/schemas/pages_identifier"},"index$":0},{"name":"deployment_id","in":"path","required":true,"schema":{"description":"UUID of the Pages deployment, as returned by deployment list or create operations.","type":"string","format":"uuid","example":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","x-auditable":true,"x-ref":"#/components/schemas/pages_deployment_id"},"index$":1},{"name":"project_name","in":"path","required":true,"schema":{"description":"Name of the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.","type":"string","example":"this-is-my-project-01","pattern":"^[a-z0-9][a-z0-9-]*$","x-auditable":true,"x-ref":"#/components/schemas/pages_project_name"},"index$":2},{"name":"account_id","in":"path","required":true,"schema":{"description":"Identifier.","type":"string","example":"023e105f4ecef8ad9ca31a8372d0c353","maxLength":32,"x-auditable":true,"x-ref":"#/components/schemas/pages_identifier"},"index$":3}]},"DELETE /accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}":{"protocol":"http","parameters":[{"name":"deployment_id","in":"path","required":true,"schema":{"description":"UUID of the Pages deployment, as returned by deployment list or create operations.","type":"string","format":"uuid","example":"f64788e9-fccd-4d4a-a28a-cb84f88f6e12","x-auditable":true,"x-ref":"#/components/schemas/pages_deployment_id"},"index$":0},{"name":"project_name","in":"path","required":true,"schema":{"description":"Name of the Pages project. Must begin with a lowercase letter or digit and contain only lowercase letters, digits, and hyphens.","type":"string","example":"this-is-my-project-01","pattern":"^[a-z0-9][a-z0-9-]*$","x-auditable":true,"x-ref":"#/components/schemas/pages_project_name"},"index$":1},{"name":"account_id","in":"path","required":true,"schema":{"description":"Identifier.","type":"string","example":"023e105f4ecef8ad9ca31a8372d0c353","maxLength":32,"x-auditable":true,"x-ref":"#/components/schemas/pages_identifier"},"index$":2},{"name":"force","in":"query","schema":{"description":"Allow deletion when a non-production deployment has an active alias.","type":"boolean","example":true},"x-fern-parameter-name":"allow-aliased","index$":3}]}})
+    }
+    const client = setup.client
+    const struct = setup.struct
+
+    const isempty = struct.isempty
+    const select = struct.select
+
+
+    // CREATE
+    const pages_deployment_ref01_ent = client.PagesDeployment()
+    let pages_deployment_ref01_data = setup.data.new.pages_deployment['pages_deployment_ref01']
+    pages_deployment_ref01_data['account_id'] = setup.idmap['account01']
+    pages_deployment_ref01_data['deployment_id'] = setup.idmap['deployment01']
+    pages_deployment_ref01_data['project_id'] = setup.idmap['project01']
+    pages_deployment_ref01_data['project_name'] = setup.idmap['project_name01']
+
+    pages_deployment_ref01_data = (await pages_deployment_ref01_ent.create(pages_deployment_ref01_data)).data()
+    assert(null != pages_deployment_ref01_data.id)
+
+
+    // LIST
+    const pages_deployment_ref01_match: any = {}
+    pages_deployment_ref01_match['account_id'] = setup.idmap['account01']
+    pages_deployment_ref01_match['deployment_id'] = setup.idmap['deployment01']
+    pages_deployment_ref01_match['project_id'] = setup.idmap['project01']
+
+    const pages_deployment_ref01_list = (await pages_deployment_ref01_ent.list(pages_deployment_ref01_match)).map((e: any) => e.data())
+
+    assert(!isempty(select(pages_deployment_ref01_list, { id: pages_deployment_ref01_data.id })))
+
+
+    // LOAD
+    const pages_deployment_ref01_match_dt0: any = {}
+    pages_deployment_ref01_match_dt0.id = pages_deployment_ref01_data.id
+    const pages_deployment_ref01_data_dt0 = (await pages_deployment_ref01_ent.load(pages_deployment_ref01_match_dt0)).data()
+    assert(pages_deployment_ref01_data_dt0.id === pages_deployment_ref01_data.id)
+
+
+    // REMOVE
+    const pages_deployment_ref01_match_rm0: any = { id: pages_deployment_ref01_data.id }
+    await pages_deployment_ref01_ent.remove(pages_deployment_ref01_match_rm0)
+  
+
+    // LIST
+    const pages_deployment_ref01_match_rt0: any = {}
+    pages_deployment_ref01_match_rt0['account_id'] = setup.idmap['account01']
+    pages_deployment_ref01_match_rt0['deployment_id'] = setup.idmap['deployment01']
+    pages_deployment_ref01_match_rt0['project_id'] = setup.idmap['project01']
+
+    const pages_deployment_ref01_list_rt0 = (await pages_deployment_ref01_ent.list(pages_deployment_ref01_match_rt0)).map((e: any) => e.data())
+
+    assert(isempty(select(pages_deployment_ref01_list_rt0, { id: pages_deployment_ref01_data.id })))
+
+
+  })
+})
+
+
+
+function basicSetup(extra?: any) {
+  // TODO: fix test def options
+  const options: any = {} // null
+
+  // TODO: needs test utility to resolve path
+  const entityDataFile =
+    Path.resolve(__dirname, 
+      '../../../../.sdk/test/entity/pages_deployment/PagesDeploymentTestData.json')
+
+  // TODO: file ready util needed?
+  const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
+
+  // TODO: need a xlang JSON parse utility in voxgig/struct with better error msgs
+  const entityData = JSON.parse(entityDataSource)
+
+  options.entity = entityData.existing
+
+  let client = CloudflarePagesSDK.test(options, extra)
+  const struct = client.utility().struct
+  const merge = struct.merge
+  const transform = struct.transform
+
+  let idmap = transform(
+    ['pages_deployment01','pages_deployment02','pages_deployment03','account01','deployment01','project01','project_name01'],
+    {
+      '`$PACK`': ['', {
+        '`$KEY`': '`$COPY`',
+        '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
+      }]
+    })
+
+  const env = envOverride({
+    'CLOUDFLARE_PAGES_TEST_PAGES_DEPLOYMENT_ENTID': idmap,
+    'CLOUDFLARE_PAGES_TEST_LIVE': 'FALSE',
+    'CLOUDFLARE_PAGES_TEST_EXPLAIN': 'FALSE',
+    'CLOUDFLARE_PAGES_APIKEY': '',
+  })
+
+  idmap = env['CLOUDFLARE_PAGES_TEST_PAGES_DEPLOYMENT_ENTID']
+
+  const live = 'TRUE' === env.CLOUDFLARE_PAGES_TEST_LIVE
+
+  const transport = createLiveTransport()
+  if (live) {
+    const rawIds = process.env['CLOUDFLARE_PAGES_TEST_PAGES_DEPLOYMENT_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
+    client = new CloudflarePagesSDK(merge([
+      // FIRST, so the generated fields below win: sdk-test-control.json's
+      // test.client.options adds to the live client, it does not redirect it.
+      liveClientOptions(),
+      {
+        apikey: env.CLOUDFLARE_PAGES_APIKEY,
+      },
+      // 'extra || {}', not a bare 'extra': struct.merge returns UNDEFINED when the
+      // last entry is undefined, and basicSetup is normally called with no
+      // argument at all - so a bare 'extra' silently discarded the apikey
+      // and server values above and handed the SDK undefined. Harmless
+      // while there was nothing in that object; not harmless now.
+      extra || {},
+      { system: { fetch: transport.fetch } }
+    ]))
+  }
+
+  const setup = {
+    idmap,
+    env,
+    options,
+    client,
+    struct,
+    data: entityData,
+    explain: 'TRUE' === env.CLOUDFLARE_PAGES_TEST_EXPLAIN,
+    live,
+    transport,
+    now: Date.now(),
+  }
+
+  return setup
+}
+  

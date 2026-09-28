@@ -1,0 +1,44 @@
+{
+  "existing": {
+    "upsert_hash": {
+      "UPSERT_HASH00": {
+        "errors": [],
+        "hashes": [],
+        "messages": [],
+        "success": false,
+        "id": "UPSERT_HASH00"
+      },
+      "UPSERT_HASH01": {
+        "errors": [],
+        "hashes": [],
+        "messages": [],
+        "success": false,
+        "id": "UPSERT_HASH01"
+      },
+      "UPSERT_HASH02": {
+        "errors": [],
+        "hashes": [],
+        "messages": [],
+        "success": false,
+        "id": "UPSERT_HASH02"
+      }
+    }
+  },
+  "new": {
+    "upsert_hash": {
+      "upsert_hash_ref01": {
+        "errors": [],
+        "hashes": [],
+        "messages": [],
+        "success": false
+      }
+    }
+  },
+  "requests": {
+    "POST /pages/assets/upsert-hashes": {
+      "provenance": "operation-contract",
+      "version": 2,
+      "source": "openapi3"
+    }
+  }
+}
